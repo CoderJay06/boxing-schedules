@@ -26,11 +26,10 @@ _ a fight has:
   3. fight channel
   4. fight time
 
-Fight: 
+Fight:
 
+- stores and saves all fight objects
 
 Scraper:
 
-
-
-
+- scrapes all content for fight details
