@@ -15,12 +15,12 @@ class BoxingSchedules::CLI
     BoxingSchedules::Scraper.scrape_scheduled_fights
     BoxingSchedules::Fight.all.each do|fight|
       puts "---------------------"
-      puts fight.channel_location
-      puts fight.fighter_names
-      puts fight.fight_time
-      puts fight.fight_details
+      puts "Fight Channel & Location: #{fight.channel_location}"
+      puts "Fight Time: #{fight.fight_time}"
+      puts "All Fight Details: #{fight.fight_details.gsub("More Details", "")}"
       puts "---------------------"
     end
+    #binding.pry
   end
 
   def start
