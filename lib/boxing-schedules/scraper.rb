@@ -25,10 +25,15 @@ class BoxingSchedules::Scraper
   end
 
   def self.scrape_fight_urls
-    fight_urls = page.css("div.schedules a").map{|link| link["href"]}.join(" ").strip
-    fight_urls.split.collect do |url|
-      "https://schedule.boxingscene.com/" + url
+    url = "https://schedule.boxingscene.com/"
+    page = Nokogiri::HTML(open(url))
+    fight = BoxingSchedules::Fight.new
+    fight_links = page.css("div.schedules a").map{|link| link["href"]}.join(" ").strip
+    fight_links.split.collect do |link|
+      "https://schedule.boxingscene.com/" + link
     end
+    
+    binding.pry
   end
 
 

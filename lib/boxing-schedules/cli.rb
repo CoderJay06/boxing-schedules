@@ -3,17 +3,16 @@ class BoxingSchedules::CLI
   def main_menu
     puts "Hello, Welcome to The Boxing Schedules CLI App."
     puts "Which displayed option would you like to select(Type the number to select):"
-    puts "1.Fight details."
-    puts "2.Fight times."
-    puts "3.The fighters."
-    puts "4.Fight channel/location."
+    puts "1. Fight Channel & Location"
+    puts "2. Fight Time"
+    puts "3. All Fight Details"
     puts "Type 'exit' to quit."
     puts "Type 'list' to see options again."
   end
 
   def scheduled_fight_details
     BoxingSchedules::Scraper.scrape_scheduled_fights
-    BoxingSchedules::Fight.all.each do|fight|
+    BoxingSchedules::Fight.all.each_with_index do|fight, index|
       puts "---------------------"
       puts "Fight Channel & Location: #{fight.channel_location}"
       puts "Fight Time: #{fight.fight_time}"
@@ -31,12 +30,12 @@ class BoxingSchedules::CLI
       case user_input
       when '1'
         # get fight dates, display them to the user.
-        puts "fight details:"
+        puts "Fights details:"
         scheduled_fight_details
       when '2'
         # get fight times, display them to the user.
-        puts "fight times:"
-        BoxingSchedules::Scraper.scrape_fight_times
+        # puts "fight times:"
+        BoxingSchedules::Scraper.scrape_fight_urls
       when '3'
         # get fighter names, display them to the user.
         puts "fighter names:"
