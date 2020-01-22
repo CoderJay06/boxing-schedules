@@ -17,6 +17,7 @@ class BoxingSchedules::CLI
       puts "Fight Channel & Location: #{fight.channel_location}"
       puts "Fight Time: #{fight.fight_time}"
       puts "All Fight Details: #{fight.fight_details.gsub("More Details", "")}"
+      puts "Fight Link: #{fight.fight_url}"
       puts "---------------------"
     end
     #binding.pry
@@ -32,6 +33,7 @@ class BoxingSchedules::CLI
         # get fight dates, display them to the user.
         puts "Fights details:"
         scheduled_fight_details
+        #binding.pry
       when '2'
         # get fight times, display them to the user.
         # puts "fight times:"

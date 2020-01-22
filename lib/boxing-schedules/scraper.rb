@@ -18,27 +18,13 @@ class BoxingSchedules::Scraper
       fight.fighter_names = content.css(".fighter-name")[i].text.split.join(" ")
       fight.fight_time = content.css(".schedule-time-block")[i].text.split.join(" ")
       fight.fight_details = content.css(".schedule-details-block")[i].text.split.join(" ")
+      #binding.pry
+      fight.fight_url = "https://schedule.boxingscene.com/" +  content.css("a")[i].attr("href")
       fight.save
       i += 1
-      #binding.pry
+    #  binding.pry
     end
   end
-
-  def self.scrape_fight_urls
-    url = "https://schedule.boxingscene.com/"
-    page = Nokogiri::HTML(open(url))
-    fight = BoxingSchedules::Fight.new
-    fight_links = page.css("div.schedules a").map{|link| link["href"]}.join(" ").strip
-    fight_links.split.collect do |link|
-      "https://schedule.boxingscene.com/" + link
-    end
-    
-    binding.pry
-  end
-
-
-
-
 
 
 #   def self.scrape_fight_channels_locations
