@@ -3,9 +3,10 @@ class BoxingSchedules::CLI
   def main_menu
     puts "Hello, Welcome to The Boxing Schedules CLI App."
     puts "Which displayed option would you like to select(Type the number to select):"
-    puts "1. Fight Channel & Location"
-    puts "2. Fight Time"
-    puts "3. All Fight Details"
+    puts "1. All Fight Details"
+    puts "2. Fight Channels & Locations"
+    puts "3. Fight Times"
+    puts "4. Fighter Names"
     puts "Type 'exit' to quit."
     puts "Type 'list' to see options again."
   end
@@ -14,6 +15,7 @@ class BoxingSchedules::CLI
     BoxingSchedules::Scraper.scrape_scheduled_fights
     BoxingSchedules::Fight.all.each_with_index do|fight, index|
       puts "---------------------"
+      puts "Fight ##{index+1}"
       puts "Fight Channel & Location: #{fight.channel_location}"
       puts "Fight Time: #{fight.fight_time}"
       puts "Fighter Names: #{fight.fighter_names}"
@@ -24,6 +26,35 @@ class BoxingSchedules::CLI
     #binding.pry
   end
 
+  def fight_channels_locations
+    BoxingSchedules::Scraper.scrape_scheduled_fights
+    BoxingSchedules::Fight.all.each_with_index do|fight, index|
+      if index < 21
+        puts "Fight ##{index+1} #{fight.channel_location}"
+      end
+    end
+  end
+
+  def fight_times
+    BoxingSchedules::Scraper.scrape_scheduled_fights
+    BoxingSchedules::Fight.all.each_with_index do|fight, index|
+      if index < 21
+        puts "Fight ##{index+1} #{fight.fight_time}"
+      end
+    end
+  end
+
+
+  def fight_names
+    BoxingSchedules::Scraper.scrape_scheduled_fights
+    BoxingSchedules::Fight.all.each_with_index do|fight, index|
+      if index < 21
+        puts "Fight ##{index+1} #{fight.fighter_names}"
+      end
+    end
+  end
+
+
   def start
     user_input = nil
     while user_input != 'exit'
@@ -31,22 +62,13 @@ class BoxingSchedules::CLI
       user_input = gets.strip.downcase
       case user_input
       when '1'
-        # get fight dates, display them to the user.
-        puts "Fights details:"
         scheduled_fight_details
-        #binding.pry
       when '2'
-        # get fight times, display them to the user.
-        # puts "fight times:"
-        BoxingSchedules::Scraper.scrape_fight_urls
+        fight_channels_locations
       when '3'
-        # get fighter names, display them to the user.
-        puts "fighter names:"
-        BoxingSchedules::Scraper.scrape_fighter_names
+        fight_times
       when '4'
-        # get fight location/arena, display it to the user.
-        puts "fight channel/location:"
-        BoxingSchedules::Scraper.scrape_fight_channels_locations
+        fight_names
       when 'exit'
         puts "Goodbye!"
       when 'list'
