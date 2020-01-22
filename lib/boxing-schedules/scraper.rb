@@ -15,52 +15,14 @@ class BoxingSchedules::Scraper
     while i < 21 do
       fight = BoxingSchedules::Fight.new
       fight.channel_location = content.css("p.fight-channels")[i].text.split.join(" ")
-      fight.fighter_names = content.css(".fighter-name")[i].text.split.join(" ")
+      fight.fighter_names = content.css(".schedule-details-block div div")[i].text.split.join(" ").strip
       fight.fight_time = content.css(".schedule-time-block")[i].text.split.join(" ")
       fight.fight_details = content.css(".schedule-details-block")[i].text.split.join(" ")
-      #binding.pry
       fight.fight_url = "https://schedule.boxingscene.com/" +  content.css("a")[i].attr("href")
       fight.save
       i += 1
-    #  binding.pry
+      #binding.pry
     end
   end
 
-
-#   def self.scrape_fight_channels_locations
-#     url = "https://schedule.boxingscene.com/"
-#     page = Nokogiri::HTML(open(url))
-#     fight = BoxingSchedules::Fight.new
-#     fight.channel_location = page.css("p.fight-channels").text.gsub("\n", " ").split.each do |fight|
-#       puts fight
-#     end
-#   end
-#
-#   def self.scrape_fighter_names
-#     url = "https://schedule.boxingscene.com/"
-#     page = Nokogiri::HTML(open(url))
-#     fight = BoxingSchedules::Fight.new
-#     fight.fighter_names = page.css(".fighter-name").text.split.each do |name|
-#       puts name
-#     end
-#   end
-#
-#   def self.scrape_fight_times
-#     url = "https://schedule.boxingscene.com/"
-#     page = Nokogiri::HTML(open(url))
-#     fight = BoxingSchedules::Fight.new
-#     fight.fight_time = page.css(".schedule-time-block").text.gsub("\n", "").split.each do |time|
-#       puts time
-#     end
-#   end
-#
-#   def self.scrape_fight_details
-#     url = "https://schedule.boxingscene.com/"
-#     page = Nokogiri::HTML(open(url))
-#     fight = BoxingSchedules::Fight.new
-#     fight.fight_details = page.css(".schedule-details-block").text.gsub("\n", "").split.each do |details|
-#       puts details
-#     end
-#   end
-#
 end

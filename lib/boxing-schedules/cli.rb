@@ -16,6 +16,7 @@ class BoxingSchedules::CLI
       puts "---------------------"
       puts "Fight Channel & Location: #{fight.channel_location}"
       puts "Fight Time: #{fight.fight_time}"
+      puts "Fighter Names: #{fight.fighter_names}"
       puts "All Fight Details: #{fight.fight_details.gsub("More Details", "")}"
       puts "Fight Link: #{fight.fight_url}"
       puts "---------------------"
