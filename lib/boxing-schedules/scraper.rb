@@ -7,10 +7,13 @@ class BoxingSchedules::Scraper
   # fighter names selector: page.css(".fighter-name").text
   # scheduled fight event details: page.css(".schedule-details-block").text.gsub("\n", "").split.each
 
-  def self.scrape_scheduled_fights
+  def self.open_scheduled_fights
     url = "https://schedule.boxingscene.com/"
-    page = Nokogiri::HTML(open(url))
-    content = page.css("div.schedules")
+    Nokogiri::HTML(open(url))
+  end
+
+  def self.scrape_scheduled_fights
+    content = self.open_scheduled_fights.css("div.schedules")
     i = 0
     while i < 21 do
       fight = BoxingSchedules::Fight.new
