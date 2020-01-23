@@ -7,6 +7,7 @@ class BoxingSchedules::CLI
     puts "2. Fight Channels & Locations"
     puts "3. Fight Times"
     puts "4. Fighter Names"
+    puts "5. Fight Links"
     puts "Type 'exit' to quit."
     puts "Type 'list' to see options again."
   end
@@ -14,16 +15,15 @@ class BoxingSchedules::CLI
   def scheduled_fight_details
     BoxingSchedules::Scraper.scrape_scheduled_fights
     BoxingSchedules::Fight.all.each_with_index do|fight, index|
-      puts "---------------------"
+      puts "----------------------------BOXING SCHEDULES-----------------------------------"
       puts "Fight ##{index+1}"
       puts "Fight Channel & Location: #{fight.channel_location}"
       puts "Fight Time: #{fight.fight_time}"
       puts "Fighter Names: #{fight.fighter_names}"
       puts "All Fight Details: #{fight.fight_details.gsub("More Details", "")}"
       puts "Fight Link: #{fight.fight_url}"
-      puts "---------------------"
+      puts "-------------------------------------------------------------------------------"
     end
-    #binding.pry
   end
 
   def fight_channels_locations
@@ -54,6 +54,15 @@ class BoxingSchedules::CLI
     end
   end
 
+  def fight_urls
+    BoxingSchedules::Scraper.scrape_scheduled_fights
+    BoxingSchedules::Fight.all.each_with_index do|fight, index|
+      if index < 21
+        puts "Fight ##{index+1} #{fight.fight_url}"
+      end
+    end
+  end
+
 
   def start
     user_input = nil
@@ -69,8 +78,10 @@ class BoxingSchedules::CLI
         fight_times
       when '4'
         fight_names
+      when '5'
+        fight_urls
       when 'exit'
-        puts "Goodbye!"
+        puts "Goodbye from The Boxing Schedules CLI App!"
       when 'list'
         main_menu
       else
