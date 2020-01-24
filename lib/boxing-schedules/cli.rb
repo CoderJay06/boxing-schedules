@@ -13,7 +13,6 @@ class BoxingSchedules::CLI
   end
 
   def scheduled_fight_details
-    BoxingSchedules::Scraper.scrape_scheduled_fights
     BoxingSchedules::Fight.all.each_with_index do|fight, index|
       puts "----------------------------BOXING SCHEDULES-----------------------------------"
       puts "Fight ##{index+1}"
@@ -27,7 +26,6 @@ class BoxingSchedules::CLI
   end
 
   def fight_channels_locations
-    BoxingSchedules::Scraper.scrape_scheduled_fights
     BoxingSchedules::Fight.all.each_with_index do|fight, index|
       if index < 21
         puts "Fight ##{index+1} #{fight.channel_location}"
@@ -36,7 +34,6 @@ class BoxingSchedules::CLI
   end
 
   def fight_times
-    BoxingSchedules::Scraper.scrape_scheduled_fights
     BoxingSchedules::Fight.all.each_with_index do|fight, index|
       if index < 21
         puts "Fight ##{index+1} #{fight.fight_time}"
@@ -46,7 +43,6 @@ class BoxingSchedules::CLI
 
 
   def fight_names
-    BoxingSchedules::Scraper.scrape_scheduled_fights
     BoxingSchedules::Fight.all.each_with_index do|fight, index|
       if index < 21
         puts "Fight ##{index+1} #{fight.fighter_names}"
@@ -55,7 +51,6 @@ class BoxingSchedules::CLI
   end
 
   def fight_urls
-    BoxingSchedules::Scraper.scrape_scheduled_fights
     BoxingSchedules::Fight.all.each_with_index do|fight, index|
       if index < 21
         puts "Fight ##{index+1} #{fight.fight_url}"
@@ -65,6 +60,7 @@ class BoxingSchedules::CLI
 
 
   def start
+    BoxingSchedules::Scraper.scrape_scheduled_fights
     user_input = nil
     while user_input != 'exit'
       main_menu
