@@ -1,7 +1,7 @@
 class BoxingSchedules::CLI
 
   def main_menu
-    puts "Hello, Welcome to The Boxing Schedules CLI App."
+    puts "Hello, Welcome to #{"The Boxing Schedules CLI App".blue}."
     puts "Which displayed option would you like to select(Type the number to select):"
     puts "1. All Fight Details"
     puts "2. Fight Channels & Locations"
@@ -14,14 +14,14 @@ class BoxingSchedules::CLI
 
   def scheduled_fight_details
     BoxingSchedules::Fight.all.each_with_index do|fight, index|
-      puts "----------------------------".red + "BOXING SCHEDULES".blue + "----------------------------- ".red
+      puts "----------------------------".red + "#{"BOXING SCHEDULES".blue}" + "--------------------------------------".red
       puts "Fight ##{index+1}"
       puts "Fight Channel & Location: #{fight.channel_location}"
       puts "Fight Time: #{fight.fight_time}"
       puts "Fighter Names: #{fight.fighter_names}"
       puts "All Fight Details: #{fight.fight_details.gsub("More Details", "")}"
       puts "Fight Link:" + "#{fight.fight_url}".yellow
-      puts "--------------------------------------------------------------------------------------".red
+      puts "----------------------------------------------------------------------------------".red
     end
   end
 
