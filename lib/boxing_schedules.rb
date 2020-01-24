@@ -2,6 +2,8 @@
 require "nokogiri"
 require "open-uri"
 require 'pry'
+require 'colorize'
+require 'colorized_string'
 
 require_relative "boxing-schedules/version"
 require_relative "boxing-schedules/cli"

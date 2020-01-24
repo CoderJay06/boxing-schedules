@@ -14,14 +14,14 @@ class BoxingSchedules::CLI
 
   def scheduled_fight_details
     BoxingSchedules::Fight.all.each_with_index do|fight, index|
-      puts "----------------------------BOXING SCHEDULES-----------------------------------"
+      puts "----------------------------".red + "BOXING SCHEDULES".blue + "----------------------------- ".red
       puts "Fight ##{index+1}"
       puts "Fight Channel & Location: #{fight.channel_location}"
       puts "Fight Time: #{fight.fight_time}"
       puts "Fighter Names: #{fight.fighter_names}"
       puts "All Fight Details: #{fight.fight_details.gsub("More Details", "")}"
-      puts "Fight Link: #{fight.fight_url}"
-      puts "-------------------------------------------------------------------------------"
+      puts "Fight Link:" + "#{fight.fight_url}".yellow
+      puts "--------------------------------------------------------------------------------------".red
     end
   end
 
