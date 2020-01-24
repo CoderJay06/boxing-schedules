@@ -2,6 +2,7 @@ class BoxingSchedules::CLI
 
   def main_menu
     puts "Hello, Welcome to #{"The Boxing Schedules CLI App".blue}."
+    puts                      "\t\t  ----------------------------".red
     puts "Which displayed option would you like to select(Type the number to select):"
     puts "1. All Fight Details"
     puts "2. Fight Channels & Locations"
@@ -67,14 +68,19 @@ class BoxingSchedules::CLI
       user_input = gets.strip.downcase
       case user_input
       when '1'
+        puts "All Fight Details:".red
         scheduled_fight_details
       when '2'
+        puts "Fight Channels & Locations:".red
         fight_channels_locations
       when '3'
+        puts "Fight Times:".red
         fight_times
       when '4'
+        puts "Fighter Names:".red
         fight_names
       when '5'
+        puts "Fight Links:".red
         fight_urls
       when 'exit'
         puts "Goodbye from The Boxing Schedules CLI App!"
