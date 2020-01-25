@@ -26,6 +26,12 @@ class BoxingSchedules::CLI
     end
   end
 
+  def fight_number(number)
+    number -= 1
+    selected_fight = scheduled_fight_details.select.with_index {|fight, index| index == number ? fight.fight_details : nil}
+    puts "#{selected_fight}"
+  end
+
   def fight_channels_locations
     BoxingSchedules::Fight.all.each_with_index do|fight, index|
       if index < 21
@@ -54,7 +60,7 @@ class BoxingSchedules::CLI
   def fight_urls
     BoxingSchedules::Fight.all.each_with_index do|fight, index|
       if index < 21
-        puts "Fight ##{index+1} #{fight.fight_url}"
+        puts "Fight ##{index+1}" + " #{fight.fight_url}".yellow
       end
     end
   end
@@ -70,6 +76,10 @@ class BoxingSchedules::CLI
       when '1'
         puts "All Fight Details:".red
         scheduled_fight_details
+
+        puts "Enter fight number to view specific fight: "
+        fight_num_input = gets.strip.to_i
+        fight_number(fight_num_input)
       when '2'
         puts "Fight Channels & Locations:".red
         fight_channels_locations
