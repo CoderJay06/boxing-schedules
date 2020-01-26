@@ -14,10 +14,10 @@ class BoxingSchedules::CLI
     puts "Type 'exit' to quit."
     puts "Type 'list' to see options again."
   end
-  
-  def number_of_fights 
-    BoxingSchedules::Fight.all 
-  end 
+
+  def number_of_fights
+    BoxingSchedules::Fight.all
+  end
 
   # iterates through all fight instances of Fight.all and grabs the attributes
   # to display each fight details to the user.
@@ -52,10 +52,16 @@ class BoxingSchedules::CLI
     end
   end
 
+  def view_fight
+    puts "Enter fight number to view specific fight: "
+    fight_num_input = gets.strip.to_i
+    fight_number(fight_num_input)
+  end
+
   # iterates through all fights, gets fight channels/locations for display.
   def fight_channels_locations
     number_of_fights.each_with_index do|fight, index|
-      if index < number_of_fights.size 
+      if index < number_of_fights.size
         puts "Fight".blue + "##{index+1} ".red + "#{fight.channel_location}"
       end
     end
@@ -64,7 +70,7 @@ class BoxingSchedules::CLI
   # iterates through all fights, gets fight times for display.
   def fight_times
     number_of_fights.each_with_index do|fight, index|
-      if index < number_of_fights.size 
+      if index < number_of_fights.size
         puts "Fight".blue + "##{index+1} ".red + "#{fight.fight_time}"
       end
     end
@@ -106,9 +112,7 @@ class BoxingSchedules::CLI
         input = gets.strip.downcase
 
         if input == 'y'
-          puts "Enter fight number to view specific fight: "
-          fight_num_input = gets.strip.to_i
-          fight_number(fight_num_input)
+          view_fight
         end
 
       when '2'
@@ -124,7 +128,8 @@ class BoxingSchedules::CLI
         puts "Fight Links:".red
         fight_urls
       when 'exit'
-        puts "Goodbye from The Boxing Schedules CLI App!".strip.blue
+        puts "Goodbye from The Boxing Schedules CLI App!"
+        puts "------------------------------------------"
       when 'list'
         main_menu
       else
