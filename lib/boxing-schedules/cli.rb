@@ -1,8 +1,9 @@
 class BoxingSchedules::CLI
 
   def main_menu
-    puts "Hello, Welcome to #{"The Boxing Schedules CLI App".blue}."
-    puts                      "\t\t  ----------------------------".red
+    puts                      "\t\t  -----------------------------".red
+    puts "Hello, Welcome to #{"The Boxing Schedules CLI App".blue}"
+    puts                      "\t\t  -----------------------------".red
     puts "Which displayed option would you like to select(Type the number to select):"
     puts "1. All Fight Details"
     puts "2. Fight Channels & Locations"
@@ -15,14 +16,14 @@ class BoxingSchedules::CLI
 
   def scheduled_fight_details
     BoxingSchedules::Fight.all.each_with_index do|fight, index|
-      puts "----------------------------".red + "#{"BOXING SCHEDULES".blue}" + "--------------------------------------".red
+      puts "----------------------------".red + "#{"BOXING SCHEDULES".blue}" + "-------------------------------------------".red
       puts "Fight ##{index+1}"
       puts "Fight Channel & Location: #{fight.channel_location}"
       puts "Fight Time: #{fight.fight_time}"
       puts "Fighter Names: #{fight.fighter_names}"
       puts "All Fight Details: #{fight.fight_details.gsub("More Details", "")}"
       puts "Fight Link:" + "#{fight.fight_url}".yellow
-      puts "----------------------------------------------------------------------------------".red
+      puts "---------------------------------------------------------------------------------------".red
     end
   end
 
@@ -31,9 +32,11 @@ class BoxingSchedules::CLI
     selected_fight = nil
     scheduled_fight_details.select.with_index do |fight, index|
       if index == number
-        puts    " ---------------------------------------------------------------------------------------------------------------".red
-        puts "|Fight ##{index+1} details:".red + "#{fight.fight_details}".gsub("More Details", "").light_blue + "|".red
-        puts    " ---------------------------------------------------------------------------------------------------------------".red
+        puts    " ---------------------------------------------------------------------------------------".red
+        puts "Fight ##{index+1}:".red
+        puts "All details:" + "#{fight.fight_details}".gsub("More Details", "").light_blue
+        puts "Fight Link:" +" #{fight.fight_url}".yellow
+        puts    " ----------------------------------------------------------------------------------------".red
       end
     end
     #puts "#{selected_fight}"
@@ -43,7 +46,7 @@ class BoxingSchedules::CLI
   def fight_channels_locations
     BoxingSchedules::Fight.all.each_with_index do|fight, index|
       if index < 21
-        puts "Fight ##{index+1} #{fight.channel_location}"
+        puts "Fight".blue + "##{index+1} ".red + "#{fight.channel_location}"
       end
     end
   end
@@ -51,7 +54,7 @@ class BoxingSchedules::CLI
   def fight_times
     BoxingSchedules::Fight.all.each_with_index do|fight, index|
       if index < 21
-        puts "Fight ##{index+1} #{fight.fight_time}"
+        puts "Fight".blue + "##{index+1} ".red + "#{fight.fight_time}"
       end
     end
   end
@@ -60,7 +63,7 @@ class BoxingSchedules::CLI
   def fight_names
     BoxingSchedules::Fight.all.each_with_index do|fight, index|
       if index < 21
-        puts "Fight ##{index+1} #{fight.fighter_names}"
+        puts "Fight".blue + "##{index+1} ".red + "#{fight.fighter_names}"
       end
     end
   end
@@ -68,7 +71,7 @@ class BoxingSchedules::CLI
   def fight_urls
     BoxingSchedules::Fight.all.each_with_index do|fight, index|
       if index < 21
-        puts "Fight ##{index+1}" + " #{fight.fight_url}".yellow
+        puts "Fight".blue + "##{index+1} ".red + "#{fight.fight_url}".yellow
       end
     end
   end

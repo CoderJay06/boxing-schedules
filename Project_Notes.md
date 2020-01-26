@@ -33,3 +33,10 @@ Fight:
 Scraper:
 
 - scrapes all content for fight details
+
+# scrape site: https://schedule.boxingscene.com/ or https://box.live/upcoming-fights-schedule/
+# scheduled fight channels/locations selector: page.css("p.fight-channels").text.gsub("\n", " ")
+# scheduled fight events selector: page.css("div.schedules a").map{|link| link["href"]}.join(" ").strip
+# scheduled fight times selector: page.css(".schedule-time-block").text.gsub("\n", "").split.each
+# fighter names selector: page.css(".fighter-name").text
+# scheduled fight event details: page.css(".schedule-details-block").text.gsub("\n", "").split.each
