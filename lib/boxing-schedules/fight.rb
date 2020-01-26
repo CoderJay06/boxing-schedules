@@ -3,16 +3,12 @@ class BoxingSchedules::Fight
 
   @@all = []
 
-  # def initialize(fight_attributes)
-  #   fight_attributes.each {|fight, details| self.send(("#{fight}="), details)}
-  #   save
-  #   binding.pry
-  # end
-
+  # saves all fight objects
   def save
     @@all << self
   end
 
+  # displays all fight objects
   def self.all
     @@all
   end

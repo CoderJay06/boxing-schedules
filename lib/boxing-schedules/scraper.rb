@@ -1,16 +1,19 @@
-# This class scrapes scheduled upcoming fights
+# This class scrapes scheduled upcoming fights.
 class BoxingSchedules::Scraper
 
-
+  # sets url for boxing schedules webpage, opens the page with Nokogiri.
   def self.open_scheduled_fights
     url = "https://schedule.boxingscene.com/"
     Nokogiri::HTML(open(url))
   end
 
+  # loops through all upcoming fights on boxingscene.
+  # scrapes all the fight details and sets fight attributes.
+  # saves them to the Fight class variable all.
   def self.scrape_scheduled_fights
     content = self.open_scheduled_fights.css("div.schedules")
     i = 0
-    while i < 21 do
+    while i < 20
       fight = BoxingSchedules::Fight.new
       fight.channel_location = content.css("p.fight-channels")[i].text.split.join(" ")
       fight.fighter_names = content.css(".schedule-details-block div div")[i].text.split.join(" ").strip
@@ -19,7 +22,6 @@ class BoxingSchedules::Scraper
       fight.fight_url = "https://schedule.boxingscene.com/" +  content.css("a")[i].attr("href")
       fight.save
       i += 1
-      #binding.pry
     end
   end
 

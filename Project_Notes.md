@@ -25,6 +25,7 @@ _ a fight has:
   2. fight location
   3. fight channel
   4. fight time
+  5. fight url
 
 Fight:
 

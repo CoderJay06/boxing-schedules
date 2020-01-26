@@ -1,5 +1,6 @@
 class BoxingSchedules::CLI
 
+  # displays main menu for fight options
   def main_menu
     puts                      "\t\t  -----------------------------".red
     puts "Hello, Welcome to #{"The Boxing Schedules CLI App".blue}"
@@ -14,35 +15,40 @@ class BoxingSchedules::CLI
     puts "Type 'list' to see options again."
   end
 
+  # iterates through all fight instances of Fight.all and grabs the attributes
+  # to display each fight details to the user.
   def scheduled_fight_details
     BoxingSchedules::Fight.all.each_with_index do|fight, index|
-      puts "----------------------------".red + "#{"BOXING SCHEDULES".blue}" + "-------------------------------------------".red
-      puts "Fight ##{index+1}"
+      puts "----------------------------".red + "#{"BOXING SCHEDULES".blue}" + "------------------------------------------------".red
+      puts "Fight ##{index+1}".red
       puts "Fight Channel & Location: #{fight.channel_location}"
       puts "Fight Time: #{fight.fight_time}"
       puts "Fighter Names: #{fight.fighter_names}"
       puts "All Fight Details: #{fight.fight_details.gsub("More Details", "")}"
       puts "Fight Link:" + "#{fight.fight_url}".yellow
-      puts "---------------------------------------------------------------------------------------".red
+      puts "--------------------------------------------------------------------------------------------".red
     end
   end
 
+  # passes in fight number selected by the user,
+  # iterates through scheduled fight details method
+  # and selects index of fight matching number passed in.
   def fight_number(number)
     number -= 1
-    selected_fight = nil
     scheduled_fight_details.select.with_index do |fight, index|
       if index == number
-        puts    " ---------------------------------------------------------------------------------------".red
+        puts "\n"
+        puts    "--------------------------------------------------------------------------------------------".red
         puts "Fight ##{index+1}:".red
-        puts "All details:" + "#{fight.fight_details}".gsub("More Details", "").light_blue
+        puts "All details:" + " #{fight.fight_details}".gsub("More Details", "")
         puts "Fight Link:" +" #{fight.fight_url}".yellow
-        puts    " ----------------------------------------------------------------------------------------".red
+        puts    "---------------------------------------------------------------------------------------------".red
+        puts "\n"
       end
     end
-    #puts "#{selected_fight}"
-    #binding.pry
   end
 
+  # iterates through all fights, gets fight channels/locations for display.
   def fight_channels_locations
     BoxingSchedules::Fight.all.each_with_index do|fight, index|
       if index < 21
@@ -51,6 +57,7 @@ class BoxingSchedules::CLI
     end
   end
 
+  # iterates through all fights, gets fight times for display.
   def fight_times
     BoxingSchedules::Fight.all.each_with_index do|fight, index|
       if index < 21
@@ -59,7 +66,7 @@ class BoxingSchedules::CLI
     end
   end
 
-
+  # iterates through all fights, gets fight names for display
   def fight_names
     BoxingSchedules::Fight.all.each_with_index do|fight, index|
       if index < 21
@@ -68,6 +75,7 @@ class BoxingSchedules::CLI
     end
   end
 
+  # iterates through all fights, gets fight urls for display.
   def fight_urls
     BoxingSchedules::Fight.all.each_with_index do|fight, index|
       if index < 21
@@ -76,7 +84,9 @@ class BoxingSchedules::CLI
     end
   end
 
-
+  # calls Scraper scrape scheduled fights method.
+  # gets user input and determines which option
+  # to display based on number input by the user.
   def start
     BoxingSchedules::Scraper.scrape_scheduled_fights
     user_input = nil
@@ -110,7 +120,7 @@ class BoxingSchedules::CLI
         puts "Fight Links:".red
         fight_urls
       when 'exit'
-        puts "Goodbye from The Boxing Schedules CLI App!"
+        puts "Goodbye from The Boxing Schedules CLI App!".strip.blue
       when 'list'
         main_menu
       else
