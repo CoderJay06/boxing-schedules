@@ -14,11 +14,15 @@ class BoxingSchedules::CLI
     puts "Type 'exit' to quit."
     puts "Type 'list' to see options again."
   end
+  
+  def number_of_fights 
+    BoxingSchedules::Fight.all 
+  end 
 
   # iterates through all fight instances of Fight.all and grabs the attributes
   # to display each fight details to the user.
   def scheduled_fight_details
-    BoxingSchedules::Fight.all.each_with_index do|fight, index|
+    number_of_fights.each_with_index do|fight, index|
       puts "----------------------------".red + "#{"BOXING SCHEDULES".blue}" + "------------------------------------------------".red
       puts "Fight ##{index+1}".red
       puts "Fight Channel & Location: #{fight.channel_location}"
@@ -50,8 +54,8 @@ class BoxingSchedules::CLI
 
   # iterates through all fights, gets fight channels/locations for display.
   def fight_channels_locations
-    BoxingSchedules::Fight.all.each_with_index do|fight, index|
-      if index < BoxingSchedules::Fight.all.size 
+    number_of_fights.each_with_index do|fight, index|
+      if index < number_of_fights.size 
         puts "Fight".blue + "##{index+1} ".red + "#{fight.channel_location}"
       end
     end
@@ -59,8 +63,8 @@ class BoxingSchedules::CLI
 
   # iterates through all fights, gets fight times for display.
   def fight_times
-    BoxingSchedules::Fight.all.each_with_index do|fight, index|
-      if index < 21
+    number_of_fights.each_with_index do|fight, index|
+      if index < number_of_fights.size 
         puts "Fight".blue + "##{index+1} ".red + "#{fight.fight_time}"
       end
     end
@@ -68,8 +72,8 @@ class BoxingSchedules::CLI
 
   # iterates through all fights, gets fight names for display
   def fight_names
-    BoxingSchedules::Fight.all.each_with_index do|fight, index|
-      if index < 21
+    number_of_fights.each_with_index do|fight, index|
+      if index < number_of_fights.size
         puts "Fight".blue + "##{index+1} ".red + "#{fight.fighter_names}"
       end
     end
@@ -77,8 +81,8 @@ class BoxingSchedules::CLI
 
   # iterates through all fights, gets fight urls for display.
   def fight_urls
-    BoxingSchedules::Fight.all.each_with_index do|fight, index|
-      if index < 21
+    number_of_fights.each_with_index do|fight, index|
+      if index < number_of_fights.size
         puts "Fight".blue + "##{index+1} ".red + "#{fight.fight_url}".yellow
       end
     end
