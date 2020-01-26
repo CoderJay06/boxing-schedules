@@ -51,7 +51,7 @@ class BoxingSchedules::CLI
   # iterates through all fights, gets fight channels/locations for display.
   def fight_channels_locations
     BoxingSchedules::Fight.all.each_with_index do|fight, index|
-      if index < 21
+      if index < BoxingSchedules::Fight.all.size 
         puts "Fight".blue + "##{index+1} ".red + "#{fight.channel_location}"
       end
     end
