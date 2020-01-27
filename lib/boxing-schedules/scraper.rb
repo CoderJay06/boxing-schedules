@@ -1,4 +1,3 @@
-# This class scrapes scheduled upcoming fights.
 class BoxingSchedules::Scraper
 
   # sets url for boxing schedules webpage, opens the page with Nokogiri.

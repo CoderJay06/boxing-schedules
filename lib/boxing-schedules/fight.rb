@@ -13,9 +13,4 @@ class BoxingSchedules::Fight
     @@all
   end
 
-  def create_fights(fight_array)
-    fight_array.each_with_index do |fight, index|
-    end
-    binding.pry
-  end
 end

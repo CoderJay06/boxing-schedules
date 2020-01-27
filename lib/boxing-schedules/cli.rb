@@ -15,6 +15,12 @@ class BoxingSchedules::CLI
     puts "Type 'list' to see options again."
   end
 
+  # Calls on Scraper class method
+  def scheduled_fights_scraper
+    BoxingSchedules::Scraper.scrape_scheduled_fights
+  end
+
+  # Gets all fight objects from Fight class
   def number_of_fights
     BoxingSchedules::Fight.all
   end
@@ -38,13 +44,12 @@ class BoxingSchedules::CLI
   # iterates through scheduled fight details method
   # and selects index of fight matching number passed in.
   def fight_number(number)
-    number -= 1
-    scheduled_fight_details.select.with_index do |fight, index|
+    scheduled_fight_details.select.with_index(1) do |fight, index|
       if index == number
         puts ""
         puts "Selected fight:"
         puts    "--------------------------------------------------------------------------------------------".red
-        puts "Fight ##{index+1}:".red
+        puts "Fight ##{index}:".red
         puts "All details:" + " #{fight.fight_details}".gsub("More Details", "")
         puts "Fight Link:" +" #{fight.fight_url}".yellow
         puts    "---------------------------------------------------------------------------------------------".red
@@ -53,6 +58,7 @@ class BoxingSchedules::CLI
     end
   end
 
+  # gets user input for fight number
   def view_fight
     puts "Enter fight number to view specific fight: "
     fight_num_input = gets.strip.to_i
@@ -99,16 +105,11 @@ class BoxingSchedules::CLI
     end
   end
 
-  def goodbye
-    puts "Goodbye from The Boxing Schedules CLI App!\n".blue
-    puts "------------------------------------------".red
-  end
-
   # calls Scraper scrape scheduled fights method.
   # gets user input and determines which option
   # to display based on number input by the user.
   def start
-    BoxingSchedules::Scraper.scrape_scheduled_fights
+    scheduled_fights_scraper
     user_input = nil
     while user_input != 'exit'
       main_menu
@@ -140,4 +141,10 @@ class BoxingSchedules::CLI
       end
     end
   end
+
+  def goodbye
+    puts "Goodbye from The Boxing Schedules CLI App!".blue
+    puts "------------------------------------------".red
+  end
+
 end
