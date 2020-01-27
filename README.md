@@ -20,6 +20,9 @@ Or install it yourself as:
 
     $ gem install boxing-schedules
 
+## Usage 
+Type:
+$ ruby bin/boxing-schedules to start the app
 
 ## Development
 
