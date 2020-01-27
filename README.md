@@ -20,9 +20,6 @@ Or install it yourself as:
 
     $ gem install boxing-schedules
 
-## Usage
-
-Start the app with BoxingSchedules::CLI.new.start command to see displayed list, select an option.
 
 ## Development
 
