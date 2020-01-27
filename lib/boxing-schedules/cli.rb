@@ -65,42 +65,10 @@ class BoxingSchedules::CLI
     fight_number(fight_num_input)
   end
 
-  # iterates through all fights, gets fight channels/locations for display.
-  def fight_channels_locations
-    puts "Fight Channels & Locations:".red
+  def print_fight_details(fight_detail)
     number_of_fights.each_with_index do|fight, index|
       if index < number_of_fights.size
-        puts "Fight".blue + "##{index+1} ".red + "#{fight.channel_location}"
-      end
-    end
-  end
-
-  # iterates through all fights, gets fight times for display.
-  def fight_times
-    puts "Fight Times:".red
-    number_of_fights.each_with_index do|fight, index|
-      if index < number_of_fights.size
-        puts "Fight".blue + "##{index+1} ".red + "#{fight.fight_time}"
-      end
-    end
-  end
-
-  # iterates through all fights, gets fight names for display
-  def fight_names
-    puts "Fighter Names:".red
-    number_of_fights.each_with_index do|fight, index|
-      if index < number_of_fights.size
-        puts "Fight".blue + "##{index+1} ".red + "#{fight.fighter_names}"
-      end
-    end
-  end
-
-  # iterates through all fights, gets fight urls for display.
-  def fight_urls
-    puts "Fight Links:".red
-    number_of_fights.each_with_index do|fight, index|
-      if index < number_of_fights.size
-        puts "Fight".blue + "##{index+1} ".red + "#{fight.fight_url}".yellow
+        puts "Fight".blue + "##{index+1} ".red + "#{fight.send(fight_detail)}"
       end
     end
   end
@@ -125,13 +93,13 @@ class BoxingSchedules::CLI
           view_fight
         end
       when '2'
-        fight_channels_locations
+        print_fight_details('channel_location')
       when '3'
-        fight_times
+        print_fight_details('fight_time')
       when '4'
-        fight_names
+        print_fight_details('fighter_names')
       when '5'
-        fight_urls
+        print_fight_details('fight_url')
       when 'exit'
         goodbye
       when 'list'
