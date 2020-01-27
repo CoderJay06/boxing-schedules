@@ -41,13 +41,14 @@ class BoxingSchedules::CLI
     number -= 1
     scheduled_fight_details.select.with_index do |fight, index|
       if index == number
-        puts "\n"
+        puts ""
+        puts "Selected fight:"
         puts    "--------------------------------------------------------------------------------------------".red
         puts "Fight ##{index+1}:".red
         puts "All details:" + " #{fight.fight_details}".gsub("More Details", "")
         puts "Fight Link:" +" #{fight.fight_url}".yellow
         puts    "---------------------------------------------------------------------------------------------".red
-        puts "\n"
+        puts ""
       end
     end
   end
@@ -60,6 +61,7 @@ class BoxingSchedules::CLI
 
   # iterates through all fights, gets fight channels/locations for display.
   def fight_channels_locations
+    puts "Fight Channels & Locations:".red
     number_of_fights.each_with_index do|fight, index|
       if index < number_of_fights.size
         puts "Fight".blue + "##{index+1} ".red + "#{fight.channel_location}"
@@ -69,6 +71,7 @@ class BoxingSchedules::CLI
 
   # iterates through all fights, gets fight times for display.
   def fight_times
+    puts "Fight Times:".red
     number_of_fights.each_with_index do|fight, index|
       if index < number_of_fights.size
         puts "Fight".blue + "##{index+1} ".red + "#{fight.fight_time}"
@@ -78,6 +81,7 @@ class BoxingSchedules::CLI
 
   # iterates through all fights, gets fight names for display
   def fight_names
+    puts "Fighter Names:".red
     number_of_fights.each_with_index do|fight, index|
       if index < number_of_fights.size
         puts "Fight".blue + "##{index+1} ".red + "#{fight.fighter_names}"
@@ -87,11 +91,17 @@ class BoxingSchedules::CLI
 
   # iterates through all fights, gets fight urls for display.
   def fight_urls
+    puts "Fight Links:".red
     number_of_fights.each_with_index do|fight, index|
       if index < number_of_fights.size
         puts "Fight".blue + "##{index+1} ".red + "#{fight.fight_url}".yellow
       end
     end
+  end
+
+  def goodbye
+    puts "Goodbye from The Boxing Schedules CLI App!\n".blue
+    puts "------------------------------------------".red
   end
 
   # calls Scraper scrape scheduled fights method.
@@ -105,7 +115,6 @@ class BoxingSchedules::CLI
       user_input = gets.strip.downcase
       case user_input
       when '1'
-        puts "All Fight Details:".red
         scheduled_fight_details
 
         puts "Would you like to view a specific fight? (y/n)"
@@ -114,22 +123,16 @@ class BoxingSchedules::CLI
         if input == 'y'
           view_fight
         end
-
       when '2'
-        puts "Fight Channels & Locations:".red
         fight_channels_locations
       when '3'
-        puts "Fight Times:".red
         fight_times
       when '4'
-        puts "Fighter Names:".red
         fight_names
       when '5'
-        puts "Fight Links:".red
         fight_urls
       when 'exit'
-        puts "Goodbye from The Boxing Schedules CLI App!"
-        puts "------------------------------------------"
+        goodbye
       when 'list'
         main_menu
       else
