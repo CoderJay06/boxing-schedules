@@ -70,6 +70,12 @@ class BoxingSchedules::CLI
     fight_number(fight_num_input, fight_detail)
   end
 
+  def select_fight_number(fight_detail)
+    if view_fight_input == 'y'
+      view_fight(fight_detail)
+    end
+  end
+
   def print_fight_details(fight_detail)
     number_of_fights.each_with_index do|fight, index|
       if index < number_of_fights.size
@@ -90,34 +96,19 @@ class BoxingSchedules::CLI
       case user_input
       when '1'
         scheduled_fight_details
-
-        if view_fight_input == 'y'
-          view_fight('fight_details')
-        end
+        select_fight_number('fight_details')
       when '2'
         print_fight_details('channel_location')
-
-        if view_fight_input == 'y'
-          view_fight('channel_location')
-        end
+        select_fight_number('channel_location')
       when '3'
         print_fight_details('fight_time')
-
-        if view_fight_input == 'y'
-          view_fight('fight_time')
-        end
+        select_fight_number('fight_time')
       when '4'
         print_fight_details('fighter_names')
-
-        if view_fight_input == 'y'
-          view_fight('fighter_names')
-        end
+        select_fight_number('fighter_names')
       when '5'
         print_fight_details('fight_url')
-
-        if view_fight_input == 'y'
-          view_fight('fight_url')
-        end
+        select_fight_number('fight_url')
       when 'exit'
         goodbye
       when 'list'
