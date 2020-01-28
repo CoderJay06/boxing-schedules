@@ -43,14 +43,14 @@ class BoxingSchedules::CLI
   # passes in fight number selected by the user,
   # iterates through scheduled fight details method
   # and selects index of fight matching number passed in.
-  def fight_number(number)
+  def fight_number(number, fight_detail)
     scheduled_fight_details.select.with_index(1) do |fight, index|
       if index == number
         puts ""
         puts "Selected fight:"
         puts    "--------------------------------------------------------------------------------------------".red
         puts "Fight ##{index}:".red
-        puts "All details:" + " #{fight.fight_details}".gsub("More Details", "")
+        puts "Selected details:" + " #{fight.send(fight_detail)}".gsub("More Details", "")
         puts "Fight Link:" +" #{fight.fight_url}".yellow
         puts    "---------------------------------------------------------------------------------------------".red
         puts ""
@@ -58,11 +58,16 @@ class BoxingSchedules::CLI
     end
   end
 
+  def view_fight_input
+    puts "Would you like to view a specific fight? (y/n)"
+    input = gets.strip.downcase
+  end
+
   # gets user input for fight number
-  def view_fight
+  def view_fight(fight_detail)
     puts "Enter fight number to view specific fight: "
     fight_num_input = gets.strip.to_i
-    fight_number(fight_num_input)
+    fight_number(fight_num_input, fight_detail)
   end
 
   def print_fight_details(fight_detail)
@@ -86,28 +91,45 @@ class BoxingSchedules::CLI
       when '1'
         scheduled_fight_details
 
-        puts "Would you like to view a specific fight? (y/n)"
-        input = gets.strip.downcase
-
-        if input == 'y'
-          view_fight
+        if view_fight_input == 'y'
+          view_fight('fight_details')
         end
       when '2'
         print_fight_details('channel_location')
+
+        if view_fight_input == 'y'
+          view_fight('channel_location')
+        end
       when '3'
         print_fight_details('fight_time')
+
+        if view_fight_input == 'y'
+          view_fight('fight_time')
+        end
       when '4'
         print_fight_details('fighter_names')
+
+        if view_fight_input == 'y'
+          view_fight('fighter_names')
+        end
       when '5'
         print_fight_details('fight_url')
+
+        if view_fight_input == 'y'
+          view_fight('fight_url')
+        end
       when 'exit'
         goodbye
       when 'list'
         main_menu
       else
-        puts "Invalid input, that is not an option."
+        invalid_input
       end
     end
+  end
+
+  def invalid_input
+    puts "Invalid input, that is not an option.".red
   end
 
   def goodbye
