@@ -44,7 +44,7 @@ class BoxingSchedules::CLI
   # iterates through scheduled fight details method
   # and selects index of fight matching number passed in.
   def fight_number(number, fight_detail)
-    scheduled_fight_details.select.with_index(1) do |fight, index|
+    number_of_fights.select.with_index(1) do |fight, index|
       if index == number
         puts ""
         puts "Selected fight:"
