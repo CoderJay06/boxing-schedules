@@ -15,12 +15,12 @@ class BoxingSchedules::CLI
     puts "Type 'list' to see options again."
   end
 
-  # Calls on Scraper class method
+  # calls on Scraper class method
   def scheduled_fights_scraper
     BoxingSchedules::Scraper.scrape_scheduled_fights
   end
 
-  # Gets all fight objects from Fight class
+  # calls on all fight objects from Fight class
   def number_of_fights
     BoxingSchedules::Fight.all
   end
@@ -40,7 +40,8 @@ class BoxingSchedules::CLI
     end
   end
 
-  # passes in fight number selected by the user,
+  # passes in fight number selected by the user and
+  # fight detail for selected fight.
   # iterates through scheduled fight details method
   # and selects index of fight matching number passed in.
   def fight_number(number, fight_detail)
@@ -58,24 +59,29 @@ class BoxingSchedules::CLI
     end
   end
 
+  # gets user input for viewing specific fight.
   def view_fight_input
     puts "Would you like to view a specific fight? (y/n)"
     input = gets.strip.downcase
   end
 
-  # gets user input for fight number
+  # gets user input for fight number selected.
   def view_fight(fight_detail)
     puts "Enter fight number to view specific fight: "
     fight_num_input = gets.strip.to_i
     fight_number(fight_num_input, fight_detail)
   end
 
-  def select_fight_number(fight_detail)
+  # determines if user chooses to
+  # view specific fight number.
+  def select_fight_number(selected_fight)
     if view_fight_input == 'y'
-      view_fight(fight_detail)
+      view_fight(selected_fight)
     end
   end
 
+  # prints out details for fights option
+  # chosen by user using metaprograming.
   def print_fight_details(fight_detail)
     number_of_fights.each_with_index do|fight, index|
       if index < number_of_fights.size
