@@ -7,7 +7,7 @@ Gem::Specification.new do |spec|
   spec.name          = "boxing-schedules"
   spec.version       = BoxingSchedules::VERSION
   spec.authors       = ["'Jason J Cruz'"]
-  spec.email         = ["'jaycru06@yahoo.com'"]
+  spec.email         = ["'jjcru06@gmail.com'"]
 
   spec.summary       = "A Gem that scrapes boxing fight schedules."
   spec.description   = "A Gem that scrapes boxing fight schedules."
