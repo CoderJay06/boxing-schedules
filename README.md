@@ -2,7 +2,7 @@ CLI Data Gem Project
 
 # Boxing Schedules
 
-This Ruby Gem scrapes data on upcoming boxing matches and displays the informartion to the user. The user can see all details for all upcoming fights at once or select from a list of options to focus in on specific details such as, fighter names, fight location & channel, fight times etc. . All fights are numbered for easy viewing and selection if the user wants to select a specific fight. 
+This Ruby Gem scrapes data on upcoming boxing matches and displays the information to the user. The user can see all details for all upcoming fights at once or select from a list of options to focus in on specific details such as, fighter names, fight location & channel, fight times etc. All fights are numbered for easy viewing and selection if the user wants to select a specific fight. 
 
 ## Installation
 
