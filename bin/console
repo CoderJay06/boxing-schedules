@@ -12,4 +12,5 @@ require_relative "../lib/boxing_schedules"
 # Pry.start
 
 require "irb"
+
 IRB.start(__FILE__)
