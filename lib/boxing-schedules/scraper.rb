@@ -10,6 +10,7 @@ class BoxingSchedules::Scraper
   # loops through all upcoming fights on boxingscene.
   # scrapes all the fight details and sets fight attributes.
   # saves them to the Fight class variable all.
+  # NOTE: DOES NOT SCRAPE ANYMORE (HTML SOURCE CODE HAS BEEN UPDATED)
   def self.scrape_scheduled_fights
     content = self.open_scheduled_fights.css("div.schedules") 
     number_of_fights = open_scheduled_fights.css(".vs").size
