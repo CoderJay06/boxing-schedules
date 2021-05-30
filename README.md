@@ -1,4 +1,6 @@
 CLI Data Gem Project
+# DEPRECATED
+This project is not working and is not being maintained at the moment.
 
 # Boxing Schedules
 
