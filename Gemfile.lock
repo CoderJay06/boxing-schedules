@@ -10,9 +10,9 @@ GEM
     coderay (1.1.2)
     colorize (0.8.1)
     method_source (1.0.0)
-    mini_portile2 (2.6.1)
-    nokogiri (1.12.5)
-      mini_portile2 (~> 2.6.1)
+    mini_portile2 (2.8.0)
+    nokogiri (1.13.3)
+      mini_portile2 (~> 2.8.0)
       racc (~> 1.4)
     pry (0.13.1)
       coderay (~> 1.1)
@@ -20,7 +20,7 @@ GEM
     pry-byebug (3.9.0)
       byebug (~> 11.0)
       pry (~> 0.13.0)
-    racc (1.5.2)
+    racc (1.6.0)
     rake (13.0.1)
 
 PLATFORMS
